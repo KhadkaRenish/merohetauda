@@ -1,8 +1,3 @@
-Yes bro. Add a clear README so later you or anyone else can run the app easily.
-
-Open your project `README.md` and replace it with this:
-
-````md
 # Mero Hetauda
 
 Mero Hetauda is a civic mobile/web app built with **React Native Expo** and **Django REST Framework**.  
