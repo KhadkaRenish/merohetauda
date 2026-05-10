@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,10 @@ SECRET_KEY = 'django-insecure-@13^#)fmb9_afxc#1su_ef1liosoa503mafy$-ffy4&07&($hf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.1.12"]
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS",
+    "127.0.0.1,localhost,192.168.1.12,192.168.1.68",
+).split(",")
 CORS_ALLOW_ALL_ORIGINS = True
 
 
@@ -82,11 +86,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "merohetauda_db",
-        "USER": "merohetauda_user",
-        "PASSWORD": "merohetauda_password",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.environ.get("POSTGRES_DB", "merohetauda_db"),
+        "USER": os.environ.get("POSTGRES_USER", "merohetauda_user"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "merohetauda_password"),
+        "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
 

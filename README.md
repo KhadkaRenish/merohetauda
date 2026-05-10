@@ -63,6 +63,39 @@ You need to run both.
 
 ---
 
+# Run With Docker
+
+Make sure Docker Desktop is running, then from the repository root run:
+
+```bash
+docker compose up --build
+```
+
+This starts:
+
+```txt
+Frontend: http://localhost:8081
+Backend:  http://localhost:8000
+News API: http://localhost:8000/api/news/
+Admin:    http://localhost:8000/admin/
+```
+
+The Docker setup uses PostgreSQL inside Compose. The database is available to the Django container as `db:5432`, so it will not conflict with a local PostgreSQL running on your Mac.
+
+To stop the containers:
+
+```bash
+docker compose down
+```
+
+To stop containers and delete the Docker database volume:
+
+```bash
+docker compose down -v
+```
+
+---
+
 # Backend Setup
 
 ## 1. Go to backend folder
@@ -556,7 +589,6 @@ python3 -m pip install -r requirements.txt
 ```
 
 ---
-
 
 
 
